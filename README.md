@@ -1,5 +1,6 @@
 # Project-Hitchhiker
 ## Jak Włączyć debuger?
+1. Na wpisz w terminalu: ``npm install``
 1. Na wpisz w terminalu: ``npx expo start``
 1. Pobierz apke ``expo go`` na telefon
 1. Zeskanuj kod QR
