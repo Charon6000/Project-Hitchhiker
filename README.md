@@ -5,3 +5,4 @@
 1. Pobierz apke ``expo go`` na telefon
 1. Zeskanuj kod QR
 1. Aby wprowadzić zmiany klikasz trójkąt by odpalic program
+1. ściągnij pakiet nawigatorowyy: ``npm install @react-navigation/native @react-navigation/stack``

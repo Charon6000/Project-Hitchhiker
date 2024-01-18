@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { SafeAreaView, Text, Button } from 'react-native';
 
 function Home({ navigation }) {
   return (
-    <View>
-      <Text>Home</Text>
+    <SafeAreaView>
+      <Text>Log in</Text>
       <Button
         title="login"
-        onPress={() => navigation.navigate('logowanie')}
+        onPress={() => navigation.navigate('login')}
       />
-    </View>
+      <Text>Register</Text>
+      <Button
+        title="register"
+        onPress={() => navigation.navigate('registration')}
+      />
+    </SafeAreaView>
   );
 }
 
