@@ -1,23 +1,51 @@
 import React from 'react';
-import { SafeAreaView, Text, Button, View } from 'react-native';
-import { Image } from 'expo-image';
+import { SafeAreaView, Text, Button, Image, StyleSheet, ImageBackground} from 'react-native';
 
-function Home({ navigation }) {
+const Home = ({ navigation }) => {
   return (
-    <SafeAreaView className="home">
-      <Image source={{ uri: '../assets/OIG.jpg' }} style={{ width: 100, height: 100 }} />
-      <Text>Log in</Text>
-      <Button
-        title="login"
-        onPress={() => navigation.navigate('login')}
-      />
-      <Text>Register</Text>
-      <Button
-        title="register"
-        onPress={() => navigation.navigate('registration')}
-      />
+    <SafeAreaView style={styles.container}>
+        <Image source={require('../assets/OIG.png')} style={styles.logo} />
+        <Text style={styles.title}>The Hichhiker</Text>
+        <Button
+          style={styles.button}
+          title="Login"
+          onPress={() => navigation.navigate('login')}
+        />
+        <Button
+          title="Register"
+          onPress={() => navigation.navigate('registration')}
+          style={styles.button}
+        />
     </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    height:'100%',
+    width: '100%',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  subtitle: {
+    marginVertical: 10,
+  },
+  button: {
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
+});
 
 export default Home;

@@ -1,34 +1,59 @@
-import React, {useState} from 'react';
-import { SafeAreaView, TextInput, Text, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
 
-function Logowanie() { 
+const Logowanie = () => {
   const [nick, setNick] = useState('');
   const [haslo, setHaslo] = useState('');
 
-  function login()
-  {
-    Alert.alert(nick + " jak ktoś to ogarnie to będziesz w ten sposób logowany 😘")
-  }
+  const handleLogin = () => {
+    Alert.alert(`${nick}, jeśli ktoś to ogarnie, to będziesz w ten sposób logowany! 😘`);
+  };
 
   return (
-    <SafeAreaView>
-      <Text>Log In</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Log In</Text>
       <TextInput
+        style={styles.input}
         placeholder="nick"
         onChangeText={setNick}
-        value={setNick}
+        value={nick}
       />
       <TextInput
+        style={styles.input}
         placeholder="password"
         onChangeText={setHaslo}
         value={haslo}
+        secureTextEntry
       />
       <Button
-        title="login"
-        onPress={login}
+        title="Login"
+        onPress={handleLogin}
       />
     </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    width: 200,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+});
 
 export default Logowanie;
