@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
+import ImagePickerForm from '../forms/ImagePickerForm';
 
 const Rejestrowanie = () => {
   const [nick, setNick] = useState('');
   const [password, setPassword] = useState('');
   const [rpassword, setRpassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [image, setImage] = useState(null);
 
   const handleRegister = () => {
     if (nick && password && rpassword) {
@@ -37,6 +40,13 @@ const Rejestrowanie = () => {
         value={rpassword}
         secureTextEntry
       />
+      <TextInput
+        style={styles.input}
+        placeholder="email"
+        onChangeText={setEmail}
+        value={email}
+      />
+      <ImagePickerForm image={image} setImage={setImage}/>
       <Button title="Register" onPress={handleRegister} />
     </SafeAreaView>
   );
