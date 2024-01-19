@@ -1,9 +1,11 @@
 import React from 'react';
-import { SafeAreaView, Text, Button } from 'react-native';
+import { SafeAreaView, Text, Button, View } from 'react-native';
+import { Image } from 'expo-image';
 
 function Home({ navigation }) {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="home">
+      <Image source={{ uri: '../assets/OIG.jpg' }} style={{ width: 100, height: 100 }} />
       <Text>Log in</Text>
       <Button
         title="login"
