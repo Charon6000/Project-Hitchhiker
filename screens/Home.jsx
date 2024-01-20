@@ -1,21 +1,21 @@
 import React from 'react';
-import { SafeAreaView, Text, Button, Image, StyleSheet, ImageBackground} from 'react-native';
+import { SafeAreaView, Text, Button, Image, StyleSheet } from 'react-native';
 
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-        <Image source={require('../assets/OIG.png')} style={styles.logo} />
-        <Text style={styles.title}>The Hichhiker</Text>
-        <Button
-          style={styles.button}
-          title="Login"
-          onPress={() => navigation.navigate('login')}
-        />
-        <Button
-          title="Register"
-          onPress={() => navigation.navigate('registration')}
-          style={styles.button}
-        />
+      <Image source={require('../assets/OIG.png')} style={styles.logo} />
+      <Text style={styles.title}>The Hichhiker</Text>
+      <Button
+        style={styles.button}
+        title="Login"
+        onPress={() => navigation.navigate('login')}
+      />
+      <Button
+        title="Register"
+        onPress={() => navigation.navigate('registration')}
+        style={styles.button}
+      />
     </SafeAreaView>
   );
 };
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    height:'100%',
+    height: '100%',
     width: '100%',
   },
   logo: {

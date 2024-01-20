@@ -12,7 +12,9 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="home" component={Home}
+        options={{headerShown:false}}
+        />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="registration" component={Register} />
       </Stack.Navigator>
