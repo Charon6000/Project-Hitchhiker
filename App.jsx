@@ -15,8 +15,12 @@ function App() {
         <Stack.Screen name="home" component={Home}
         options={{headerShown:false}}
         />
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="registration" component={Register} />
+        <Stack.Screen name="login" component={Login} 
+          options={{headerShown:false}}
+        />
+        <Stack.Screen name="registration" component={Register} 
+          options={{headerShown:false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
