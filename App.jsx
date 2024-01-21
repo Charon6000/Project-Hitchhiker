@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
 import Login from './screens/Logowanie';
 import Register from './screens/Rejestrowanie';
+import Main from './screens/Main';
 
 const Stack = createStackNavigator();
 
@@ -15,12 +16,9 @@ function App() {
         <Stack.Screen name="home" component={Home}
         options={{headerShown:false}}
         />
-        <Stack.Screen name="login" component={Login} 
-          options={{headerShown:false}}
-        />
-        <Stack.Screen name="registration" component={Register} 
-          options={{headerShown:false}}
-        />
+        <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="registration" component={Register} />
+        <Stack.Screen name="main" component={Main} />
       </Stack.Navigator>
     </NavigationContainer>
   );

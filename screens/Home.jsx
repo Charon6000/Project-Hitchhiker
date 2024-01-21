@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   button: {
     fontWeight: 'bold',
     marginVertical: 10,
+
   },
 });
 

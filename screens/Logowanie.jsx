@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
 
-const Logowanie = () => {
+const Logowanie = ({navigation}) => {
   const [nick, setNick] = useState('');
   const [haslo, setHaslo] = useState('');
 
   const handleLogin = () => {
-    Alert.alert(`${nick}, jeśli ktoś to ogarnie, to będziesz w ten sposób logowany! 😘`);
+    //Alert.alert(`${nick}, jeśli ktoś to ogarnie, to będziesz w ten sposób logowany! 😘`);
+    navigation.navigate('main')
   };
 
   return (
@@ -50,9 +51,11 @@ const styles = StyleSheet.create({
     width: 200,
     borderColor: 'gray',
     borderWidth: 1,
+    borderRadius:10,
     marginBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
+
   },
 });
 
