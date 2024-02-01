@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView, Text, StyleSheet } from 'react-native'
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps'
-import MapViewDirections from 'react-native-maps-directions';
+// import MapViewDirections from 'react-native-maps-directions';
 
 function Map() {
   return (
@@ -21,10 +21,10 @@ function Map() {
               <Text>Gdańsk</Text>
             </Callout>
           </Marker>
-          <MapViewDirections
+          {/* <MapViewDirections
             origin={{ latitude: 54.372158, longitude: 18.638306 }}
             destination={{ latitude: 40.372158, longitude: 10.638306 }}
-          />
+          /> */}
         </MapView>
     </SafeAreaView>
   )

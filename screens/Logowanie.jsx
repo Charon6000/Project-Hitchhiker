@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
+import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import AvoidingKeyboard from "../components/AvoidingKeyboard";
+import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 
 const Logowanie = ({navigation}) => {
   const [nick, setNick] = useState('');
@@ -11,52 +13,30 @@ const Logowanie = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Log In</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="nick"
-        onChangeText={setNick}
-        value={nick}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="password"
-        onChangeText={setHaslo}
-        value={haslo}
-        secureTextEntry
-      />
-      <Button
-        title="Login"
-        onPress={handleLogin}
-      />
-    </SafeAreaView>
+    <AvoidingKeyboard>
+        <StyledContainer>
+          <StyledText>Log In</StyledText>
+          <StyledTextInput
+            placeholder="nick"
+            onChangeText={setNick}
+            value={nick}
+          />
+          <StyledTextInput
+            placeholder="password"
+            onChangeText={setHaslo}
+            value={haslo}
+            secureTextEntry
+          />
+          <StyledButton
+            title="Login"
+            onPress={handleLogin}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate('registration')}>
+          <StyledLink>Create account</StyledLink>
+          </TouchableOpacity>
+        </StyledContainer>
+    </AvoidingKeyboard>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    width: 200,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius:10,
-    marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-
-  },
-});
 
 export default Logowanie;

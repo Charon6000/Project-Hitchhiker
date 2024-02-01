@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
-import ImagePickerForm from '../forms/ImagePickerForm';
+import ImagePickerForm from '../components/ImagePickerForm';
+import AvoidiongKeyboard from '../components/AvoidingKeyboard';
 
 const Rejestrowanie = () => {
   const [nick, setNick] = useState('');
@@ -18,37 +19,39 @@ const Rejestrowanie = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Join us!</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="nick"
-        onChangeText={setNick}
-        value={nick}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="password"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="repeat password"
-        onChangeText={setRpassword}
-        value={rpassword}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="email"
-        onChangeText={setEmail}
-        value={email}
-      />
-      <ImagePickerForm image={image} setImage={setImage}/>
-      <Button title="Register" onPress={handleRegister} />
-    </SafeAreaView>
+    <AvoidiongKeyboard>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Join us!</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="nick"
+          onChangeText={setNick}
+          value={nick}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="password"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="repeat password"
+          onChangeText={setRpassword}
+          value={rpassword}
+          secureTextEntry
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="email"
+          onChangeText={setEmail}
+          value={email}
+        />
+        {/* <ImagePickerForm image={image} setImage={setImage}/> */}
+        <Button title="Register" onPress={handleRegister} />
+      </SafeAreaView>
+    </AvoidiongKeyboard>
   );
 };
 

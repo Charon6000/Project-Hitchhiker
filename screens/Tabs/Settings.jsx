@@ -1,10 +1,14 @@
 import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Button, Text } from 'react-native'
 
-function Settings() {
+function Settings({ navigation }) {
   return (
     <SafeAreaView>
       <Text>Settings</Text>
+      <Button
+        title="Log out"
+        onPress={() => navigation.navigate('login')}
+      />
     </SafeAreaView>
   )
 }

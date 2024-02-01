@@ -11,11 +11,6 @@ const Home = ({ navigation }) => {
         title="Login"
         onPress={() => navigation.navigate('login')}
       />
-      <Button
-        title="Register"
-        onPress={() => navigation.navigate('registration')}
-        style={styles.button}
-      />
     </SafeAreaView>
   );
 };
