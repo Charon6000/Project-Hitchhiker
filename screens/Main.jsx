@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tab = createBottomTabNavigator()
 const screenOptions ={
-  headerShown: false,
+  // headerShown: false,
   tabBarShowLabel:false,
   tabBarStyle:{
     position: "absolute",
@@ -16,8 +16,16 @@ const screenOptions ={
 function Main() {
   return (
         <Tab.Navigator screenOptions={screenOptions}>
-            <Tab.Screen name="Map" component={Map}/>
-            <Tab.Screen name="Settings" component={Settings}/>
+            <Tab.Screen 
+            name="Map" 
+            component={Map} 
+            options={{ title: 'Map' }} 
+            />
+            <Tab.Screen 
+            name="Settings" 
+            component={Settings}
+            options={{ title: 'User Settings' }} 
+            />
         </Tab.Navigator>
   )
 }

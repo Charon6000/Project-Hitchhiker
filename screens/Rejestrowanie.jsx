@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet } from 'react-native';
+import {Alert} from 'react-native';
 import ImagePickerForm from '../components/ImagePickerForm';
 import AvoidiongKeyboard from '../components/AvoidingKeyboard';
+import { StyledContainer, StyledTextInput, StyledButton,  StyledText} from '../components/styles';
+
 
 const Rejestrowanie = () => {
   const [nick, setNick] = useState('');
@@ -20,63 +22,35 @@ const Rejestrowanie = () => {
 
   return (
     <AvoidiongKeyboard>
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Join us!</Text>
-        <TextInput
-          style={styles.input}
+      <StyledContainer>
+        <StyledText>Join us!</StyledText>
+        <StyledTextInput
           placeholder="nick"
           onChangeText={setNick}
           value={nick}
         />
-        <TextInput
-          style={styles.input}
+        <StyledTextInput
           placeholder="password"
           onChangeText={setPassword}
           value={password}
           secureTextEntry
         />
-        <TextInput
-          style={styles.input}
+        <StyledTextInput
           placeholder="repeat password"
           onChangeText={setRpassword}
           value={rpassword}
           secureTextEntry
         />
-        <TextInput
-          style={styles.input}
+        <StyledTextInput
           placeholder="email"
           onChangeText={setEmail}
           value={email}
         />
         {/* <ImagePickerForm image={image} setImage={setImage}/> */}
-        <Button title="Register" onPress={handleRegister} />
-      </SafeAreaView>
+        <StyledButton title="Register" onPress={handleRegister} />
+      </StyledContainer>
     </AvoidiongKeyboard>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    width: 200,
-    borderColor: 'gray',
-    borderRadius:10,
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
 
 export default Rejestrowanie;

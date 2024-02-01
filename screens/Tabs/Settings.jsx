@@ -1,15 +1,15 @@
 import React from 'react'
-import { SafeAreaView, Button, Text } from 'react-native'
+import { StyledButton, StyledText, StyledContainer } from '../../components/styles'
 
 function Settings({ navigation }) {
   return (
-    <SafeAreaView>
-      <Text>Settings</Text>
-      <Button
+    <StyledContainer>
+      <StyledText>Settings</StyledText>
+      <StyledButton
         title="Log out"
         onPress={() => navigation.navigate('login')}
       />
-    </SafeAreaView>
+    </StyledContainer>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TextInput, Text, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import {TouchableOpacity } from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 
