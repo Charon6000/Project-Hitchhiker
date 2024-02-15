@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyledButton, StyledText, StyledContainer } from '../../components/styles'
 
-function Settings({ navigation }) {
+function MyProfile({ navigation }) {
   return (
     <StyledContainer>
-      <StyledText>Settings</StyledText>
+      <StyledText>My Profile</StyledText>
       <StyledButton
         title="Log out"
         onPress={() => navigation.navigate('login')}
@@ -13,4 +13,4 @@ function Settings({ navigation }) {
   )
 }
 
-export default Settings
+export default MyProfile

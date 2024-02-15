@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import Map from './Tabs/Map'
-import Settings from './Tabs/Settings'
+import MyProfile from './Tabs/MyProfile'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tab = createBottomTabNavigator()
@@ -22,9 +22,9 @@ function Main() {
             options={{ title: 'Map' }} 
             />
             <Tab.Screen 
-            name="Settings" 
-            component={Settings}
-            options={{ title: 'User Settings' }} 
+            name="MyProfile" 
+            component={MyProfile}
+            options={{ title: 'My Profile' }} 
             />
         </Tab.Navigator>
   )
