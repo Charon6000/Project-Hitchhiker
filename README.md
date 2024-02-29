@@ -34,6 +34,7 @@
 1. ``npx expo install expo-image-picker``
 1. ``npm install @react-navigation/native @react-navigation/stack``
 1. ``npm install styled-components``
+1. ``npx expo install expo-location``
 
 ## Włączanie debugowania aplikacji
 ### Dla emulatora android studio
