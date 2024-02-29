@@ -43,3 +43,8 @@
 ### Dla dowolnego fizycznego telefonu
 1. Rozpocznij debugging aplikacji wpisując znajdując się w folderze ``Project-Hitchiker`` w terminalu ``npm start``.
 1. Po pełnym uruchomieniu wyświetli się kod ``QR``, który należy zeskanować urządzeniem. Uruchomi to debuger applikacji w aplikacji ``Expo``
+
+### Walidacja bazy danych
+1. Jeżeli dane takie jak hasło, nazwa użytkownika w bazie danych będą się zgadzać z danymi naszego konta testowego, walidator funkcji GET zwróci nam wartość TRUE, a więc pobieranie danych dział poprawnie
+1. Nastepnie za pomocą działającego pobierania danych będziemy wstanie sprawdzić czy tworząc nowe konto użytkownika wartości poprawnie dodadzą się do bazy danych, za pomocą walidatora funkcji GET, który powinien zwrócić wartość TRUE
+1. Później znowu za pomocą już działającego pobierania danych będziemy w stanie sprawdzić czy usuwanie użytkownika działa poprawnie, za pomocą walidatora funkcji GET, który powinien zwrócić wartość FALSE, czyli dane zostały usunięte
