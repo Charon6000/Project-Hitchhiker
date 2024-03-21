@@ -3,9 +3,10 @@ import {Alert} from 'react-native';
 import ImagePickerForm from '../components/ImagePickerForm';
 import AvoidiongKeyboard from '../components/AvoidingKeyboard';
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText} from '../components/styles';
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { auth } from '../firebase';
 
-
-const Rejestrowanie = () => {
+const Rejestrowanie = ({navigation}) => {
   const [nick, setNick] = useState('');
   const [password, setPassword] = useState('');
   const [rpassword, setRpassword] = useState('');
@@ -13,8 +14,18 @@ const Rejestrowanie = () => {
   const [image, setImage] = useState(null);
 
   const handleRegister = () => {
-    if (nick && password && rpassword) {
-      Alert.alert(`${nick}, jeśli ktoś to ogarnie, to zostaniesz zarejestrowany! 😘`);
+    
+    if (nick && password && rpassword && email && password == rpassword) {
+      //Alert.alert(`${nick}, jeśli ktoś to ogarnie, to zostaniesz zarejestrowany! 😘`);
+
+      createUserWithEmailAndPassword(auth, email,password)
+      .then(userCredentials =>{
+        const user = userCredentials.user;
+      })
+      .catch(error =>console.log(error));
+
+      navigation.navigate('login');
+      Alert.alert('Zostales poprawnie zarejestrowany.')
     } else {
       Alert.alert('Musisz wypełnić cały formularz! 😘');
     }
