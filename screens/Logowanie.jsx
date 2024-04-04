@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, Alert} from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPasswor, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -11,7 +11,6 @@ const Logowanie = ({navigation}) => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    //Alert.alert(`${nick}, jeśli ktoś to ogarnie, to będziesz w ten sposób logowany! 😘`);
     signInWithEmailAndPassword(auth, email, haslo)
     .then((userCredential)=>{
       const user = userCredential.user;
@@ -21,6 +20,21 @@ const Logowanie = ({navigation}) => {
       setError(error.message);
     });
   };
+
+  const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((result)=>{
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      navigation.navigate('main');
+    }).catch((error)=>{
+      setError(error.message);
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      const email = error.customData.email;
+    })
+  }
 
   return (
     <AvoidingKeyboard>
@@ -36,6 +50,10 @@ const Logowanie = ({navigation}) => {
             onChangeText={setHaslo}
             value={haslo}
             secureTextEntry
+          />
+          <StyledButton 
+            title="Google"
+            // trzeba ogarnac
           />
           <Text style={{color: 'red'}}>{error}</Text>
           <StyledButton

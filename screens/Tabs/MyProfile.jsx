@@ -1,5 +1,7 @@
 import React from 'react'
 import { StyledButton, StyledText, StyledContainer } from '../../components/styles'
+import {auth} from '../../firebase';
+import { signOut } from 'firebase/auth';
 
 function MyProfile({ navigation }) {
   return (
@@ -7,9 +9,15 @@ function MyProfile({ navigation }) {
       <StyledText>My Profile</StyledText>
       <StyledButton
         title="Log out"
-        onPress={() => navigation.navigate('login')}
+        onPress={() => 
+          signOut(auth).then(() => {
+            navigation.navigate('login');
+          }).catch((error) => {
+            // An error happened.
+          })
+        }
       />
-    </StyledContainer>
+    </StyledContainer>  
   )
 }
 

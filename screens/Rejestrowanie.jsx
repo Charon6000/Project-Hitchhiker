@@ -28,10 +28,10 @@ const Rejestrowanie = ({navigation}) => {
       .catch((error) =>{
           setError(error.message);
       });
+    
+    } else {
+      Alert.alert('Musisz wypełnić cały formularz! 😘');
     }
-    // } else {
-    //   Alert.alert('Musisz wypełnić cały formularz! 😘');
-    // }
   };
 
   return (
