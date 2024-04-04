@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import {TouchableOpacity } from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [haslo, setHaslo] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = () => {
     //Alert.alert(`${nick}, jeśli ktoś to ogarnie, to będziesz w ten sposób logowany! 😘`);
     signInWithEmailAndPassword(auth, email, haslo)
     .then((userCredential)=>{
       const user = userCredential.user;
+      navigation.navigate('main');
     })
-    .catch((error)=>console.log(error));
-    //navigation.navigate('main');
+    .catch((error)=>{
+      setError(error.message);
+    });
   };
 
   return (
@@ -34,6 +37,7 @@ const Logowanie = ({navigation}) => {
             value={haslo}
             secureTextEntry
           />
+          <Text style={{color: 'red'}}>{error}</Text>
           <StyledButton
             title="Login"
             onPress={handleLogin}

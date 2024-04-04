@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Alert} from 'react-native';
+import {Alert, Text} from 'react-native';
 import ImagePickerForm from '../components/ImagePickerForm';
 import AvoidiongKeyboard from '../components/AvoidingKeyboard';
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText} from '../components/styles';
@@ -12,6 +12,7 @@ const Rejestrowanie = ({navigation}) => {
   const [rpassword, setRpassword] = useState('');
   const [email, setEmail] = useState('');
   const [image, setImage] = useState(null);
+  const [error, setError] = useState('');
 
   const handleRegister = () => {
     
@@ -21,14 +22,16 @@ const Rejestrowanie = ({navigation}) => {
       createUserWithEmailAndPassword(auth, email,password)
       .then(userCredentials =>{
         const user = userCredentials.user;
+        navigation.navigate('login');
+        Alert.alert('Zostales poprawnie zarejestrowany.');
       })
-      .catch(error =>console.log(error));
-
-      navigation.navigate('login');
-      Alert.alert('Zostales poprawnie zarejestrowany.')
-    } else {
-      Alert.alert('Musisz wypełnić cały formularz! 😘');
+      .catch((error) =>{
+          setError(error.message);
+      });
     }
+    // } else {
+    //   Alert.alert('Musisz wypełnić cały formularz! 😘');
+    // }
   };
 
   return (
@@ -57,6 +60,7 @@ const Rejestrowanie = ({navigation}) => {
           onChangeText={setEmail}
           value={email}
         />
+        <Text style={{color:'red'}}>{error}</Text>
         {/* <ImagePickerForm image={image} setImage={setImage}/> */}
         <StyledButton title="Register" onPress={handleRegister} />
       </StyledContainer>
