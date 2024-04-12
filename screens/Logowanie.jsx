@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, Alert} from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
-import { signInWithEmailAndPasswor, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
