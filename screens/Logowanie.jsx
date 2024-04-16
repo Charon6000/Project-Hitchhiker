@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, Alert} from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithCredential, getRedirectResult } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult } from 'firebase/auth';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -25,7 +25,7 @@ const Logowanie = ({navigation}) => {
   
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithCredential(auth, provider)
+    signInWithPopup(auth, provider)
     .then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;

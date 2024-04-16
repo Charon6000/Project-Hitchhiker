@@ -35,6 +35,7 @@
 1. ``npm install @react-navigation/native @react-navigation/stack``
 1. ``npm install styled-components``
 1. ``npx expo install expo-location``
+1. ``npm install --save firebase``
 
 ## Włączanie debugowania aplikacji
 ### Dla emulatora android studio
