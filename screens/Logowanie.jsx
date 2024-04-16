@@ -3,7 +3,7 @@ import {TouchableOpacity, Text, Alert} from 'react-native';
 import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
-import { signInWithEmailAndPasswor, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithCredential, getRedirectResult } from 'firebase/auth';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -21,9 +21,11 @@ const Logowanie = ({navigation}) => {
     });
   };
 
+
+  
   const googleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    signInWithCredential(auth, provider)
     .then((result)=>{
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
@@ -33,7 +35,7 @@ const Logowanie = ({navigation}) => {
       setError(error.message);
       const credential = GoogleAuthProvider.credentialFromError(error);
       const email = error.customData.email;
-    })
+    });
   }
 
   return (
@@ -53,12 +55,15 @@ const Logowanie = ({navigation}) => {
           />
           <StyledButton 
             title="Google"
-            // trzeba ogarnac
+            onPress={googleLogin}
           />
           <Text style={{color: 'red'}}>{error}</Text>
           <StyledButton
             title="Login"
-            onPress={handleLogin}
+            onPress={
+              handleLogin
+              //navigation.navigate('main')
+            }
           />
           <TouchableOpacity onPress={() => navigation.navigate('registration')}>
           <StyledLink>Create account</StyledLink>

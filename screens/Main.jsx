@@ -3,6 +3,7 @@ import React from 'react'
 import Map from './Tabs/Map'
 import MyProfile from './Tabs/MyProfile'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Posts from './Tabs/Posts'
 
 const Tab = createBottomTabNavigator()
 const screenOptions ={
@@ -20,6 +21,11 @@ function Main() {
             name="Map" 
             component={Map} 
             options={{ title: 'Map' }} 
+            />
+            <Tab.Screen
+            name='Posts'
+            component={Posts}
+            options={{title : 'Posts'}}
             />
             <Tab.Screen 
             name="MyProfile" 

@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
     "@react-google-maps/api": "^2.19.2",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/geolocation": "^3.2.0",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.16",

@@ -41,3 +41,13 @@ export const StyledTextInput = styled.TextInput`
     paddingLeft: 10px;
     paddingRight: 10px;
 `;
+export const StyledPostInput = styled.TextInput`
+    height: 50px;
+    width: 320px;
+    borderColor: #002AFC;
+    borderRadius:10px;
+    borderWidth: 2px;
+    marginBottom: 10px;
+    paddingLeft: 10px;
+    paddingRight: 10px;
+`;
