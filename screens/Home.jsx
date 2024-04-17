@@ -1,12 +1,21 @@
 import React from 'react';
-import { SafeAreaView, Text, Button, Image, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, Image, StyleSheet } from 'react-native';
+import { SocialIcon, Button } from 'react-native-elements'
 
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assets/OIG.png')} style={styles.logo} />
       <Text style={styles.title}>The Hichhiker</Text>
+      <SocialIcon
+        title='Sign In With Facebook'
+        button
+        type='facebook'
+        iconStyle = {styles.faceIcon}
+        fontStyle={styles.faceFont}
+      />
       <Button
+      type='outline'
         style={styles.button}
         title="Login"
         onPress={() => navigation.navigate('login')}
@@ -41,6 +50,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
 
+  },
+  faceIcon:{
+    paddingLeft: 20,
+  },
+  faceFont:{
+    paddingRight: 20,
   },
 });
 

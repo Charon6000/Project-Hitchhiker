@@ -35,7 +35,9 @@
 1. ``npm install @react-navigation/native @react-navigation/stack``
 1. ``npm install styled-components``
 1. ``npx expo install expo-location``
-1. ``npm install --save firebase``
+1. ``npm i firebase``
+1. ``npx expo install react-native-gesture-handler``
+1.``npm i @react-native-google-signin/google-signin``
 
 ## Włączanie debugowania aplikacji
 ### Dla emulatora android studio

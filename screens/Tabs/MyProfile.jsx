@@ -3,10 +3,10 @@ import { StyledButton, StyledText, StyledContainer } from '../../components/styl
 import {auth} from '../../firebase';
 import { signOut } from 'firebase/auth';
 
-function MyProfile({ navigation }) {
+function MyProfile({ navigation, route }) {
   return (
     <StyledContainer>
-      <StyledText>My Profile</StyledText>
+      <StyledText>Email: {route.params.email}</StyledText>
       <StyledButton
         title="Log out"
         onPress={() => 

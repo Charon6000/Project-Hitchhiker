@@ -14,7 +14,7 @@ const screenOptions ={
   }
 }
 
-function Main() {
+function Main({route}) {
   return (
         <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen 
@@ -31,6 +31,7 @@ function Main() {
             name="MyProfile" 
             component={MyProfile}
             options={{ title: 'My Profile' }} 
+            initialParams={{ user: route.params.user, email: route.params.email }}
             />
         </Tab.Navigator>
   )

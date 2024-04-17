@@ -4,6 +4,8 @@ import AvoidingKeyboard from "../components/AvoidingKeyboard";
 import { StyledContainer, StyledTextInput, StyledButton,  StyledText, StyledLink } from '../components/styles';
 import {auth} from '../firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult } from 'firebase/auth';
+import {Input, Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Logowanie = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -14,51 +16,45 @@ const Logowanie = ({navigation}) => {
     signInWithEmailAndPassword(auth, email, haslo)
     .then((userCredential)=>{
       const user = userCredential.user;
-      navigation.navigate('main');
+      navigation.navigate('main', {user:user, email:email});
     })
     .catch((error)=>{
       setError(error.message);
     });
   };
 
-
-  
-  const googleLogin = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-    .then((result)=>{
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      navigation.navigate('main');
-    }).catch((error)=>{
-      setError(error.message);
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      const email = error.customData.email;
-    });
-  }
-
   return (
     <AvoidingKeyboard>
         <StyledContainer>
           <StyledText>Log In</StyledText>
-          <StyledTextInput
-            placeholder="nick"
+          <Input
+            placeholder=" Email"
             onChangeText={setEmail}
             value={email}
+            leftIcon={
+            <Icon
+              name='envelope'
+              size={24}
+              color='black'
+            />
+          }
           />
-          <StyledTextInput
-            placeholder="password"
+          <Input
+            placeholder=" Password"
             onChangeText={setHaslo}
             value={haslo}
-            secureTextEntry
-          />
-          <StyledButton 
-            title="Google"
-            onPress={googleLogin}
+            secureTextEntry={true}
+            leftIcon={
+            <Icon
+              name='lock'
+              size={24}
+              color='black'
+            />
+          }
           />
           <Text style={{color: 'red'}}>{error}</Text>
-          <StyledButton
+          <Button
+            type="outline"
             title="Login"
             onPress={
               handleLogin
