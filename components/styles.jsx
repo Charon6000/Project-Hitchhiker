@@ -43,11 +43,11 @@ export const StyledTextInput = styled.TextInput`
 `;
 export const StyledPostInput = styled.TextInput`
     height: 50px;
-    width: 320px;
-    borderColor: #002AFC;
-    borderRadius:10px;
-    borderWidth: 2px;
-    marginBottom: 10px;
-    paddingLeft: 10px;
-    paddingRight: 10px;
+    width: 345px;
+    border-color: ${props => props.isHovered ? '#FF0000' : '#007bff'};
+    border-radius: 10px;
+    border-width: 2px;
+    margin-bottom: 650px;
+    padding-left: 10px;
+    padding-right: 10px;
 `;

@@ -7,18 +7,18 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Image source={require('../assets/OIG.png')} style={styles.logo} />
       <Text style={styles.title}>The Hichhiker</Text>
+      <Button
+      type='outline'
+        style={styles.button}
+        title="Login"
+        onPress={() => navigation.navigate('login')}
+      />
       <SocialIcon
         title='Sign In With Facebook'
         button
         type='facebook'
         iconStyle = {styles.faceIcon}
         fontStyle={styles.faceFont}
-      />
-      <Button
-      type='outline'
-        style={styles.button}
-        title="Login"
-        onPress={() => navigation.navigate('login')}
       />
     </SafeAreaView>
   );

@@ -39,6 +39,7 @@
 1. ``npx expo install react-native-gesture-handler``
 1. ``npm i @react-native-google-signin/google-signin``
 1. ``npm i font-awesome``
+1. ``npx expo install react-native-screens react-native-safe-area-context``
 
 ## Włączanie debugowania aplikacji
 ### Dla emulatora android studio

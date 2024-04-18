@@ -27,30 +27,16 @@ const Logowanie = ({navigation}) => {
     <AvoidingKeyboard>
         <StyledContainer>
           <StyledText>Log In</StyledText>
-          <Input
+          <StyledTextInput
             placeholder=" Email"
             onChangeText={setEmail}
             value={email}
-            leftIcon={
-            <Icon
-              name='envelope'
-              size={24}
-              color='black'
-            />
-          }
           />
-          <Input
+          <StyledTextInput
             placeholder=" Password"
             onChangeText={setHaslo}
             value={haslo}
             secureTextEntry={true}
-            leftIcon={
-            <Icon
-              name='lock'
-              size={24}
-              color='black'
-            />
-          }
           />
           <Text style={{color: 'red'}}>{error}</Text>
           <Button
@@ -58,7 +44,7 @@ const Logowanie = ({navigation}) => {
             title="Login"
             onPress={
               handleLogin
-              //navigation.navigate('main')
+              //navigation.navigate('main', {user:"dupa", email:"cyce"})
             }
           />
           <TouchableOpacity onPress={() => navigation.navigate('registration')}>
