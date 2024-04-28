@@ -4,6 +4,7 @@ import Map from './Tabs/Map'
 import MyProfile from './Tabs/MyProfile'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Posts from './Tabs/Posts'
+import addPost from '../firebase'
 
 const Tab = createBottomTabNavigator()
 const screenOptions ={

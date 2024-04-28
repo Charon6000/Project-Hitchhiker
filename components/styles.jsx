@@ -3,7 +3,6 @@ import {SafeAreaView, TextInput, Image, Text, Button} from 'react-native';
 
 export const StyledContainer = styled.SafeAreaView`
     flex: 1;
-    justifyContent: center;
     alignItems: center;
     padding: 20px;
     height: 100%;
