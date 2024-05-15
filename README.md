@@ -29,17 +29,10 @@
 1. Na urządzeniu należy pobrać aplikacje ``Expo``. Dzięki niej będzie uruchamiany projekt.
 
 ## Pobieranie koniecznych bibliotek i rozszerzeń
-1. Na wpisz w terminalu: ``npm install``
-1. ``npx expo install react-native-web@~0.19.6 react-dom@18.2.0 @expo/webpack-config@^19.0.0``
-1. ``npx expo install expo-image-picker``
-1. ``npm install @react-navigation/native @react-navigation/stack``
-1. ``npm install styled-components``
-1. ``npx expo install expo-location``
-1. ``npm i firebase``
-1. ``npx expo install react-native-gesture-handler``
-1. ``npm i @react-native-google-signin/google-signin``
-1. ``npm i font-awesome``
-1. ``npx expo install react-native-screens react-native-safe-area-context``
+ Aplikacja napisana w node.js pozwala automatycznie zainstalować potrzebne biblioteki do debugowania aplikacji. 
+ Program sprawdzi czy biblioteki są zainstalowane, a jeśli nie to je pobierze.
+ Biblioteki są posortowane na npm i npx, więc ten sposób segregacji należy zachować.
+ Włączenie programu jest banalnie proste. Wystarczy wejść w plik ``pobierz biblioteki.js`` i kliknąć ``strzeałkę`` bądź wpisać komendę ``node <link do pliku>``.
 
 ## Włączanie debugowania aplikacji
 ### Dla emulatora android studio
