@@ -22,7 +22,7 @@ const Logowanie = ({navigation}) => {
       setError(error.message);
     });
   };
-
+//dwddwd
   return (
     <AvoidingKeyboard>
         <StyledContainer>
