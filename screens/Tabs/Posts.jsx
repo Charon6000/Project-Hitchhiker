@@ -5,7 +5,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useState } from 'react'
 
 
-
 const Posts = () => {
   
   const [isHovered, setIsHovered] = useState(false);

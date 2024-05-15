@@ -28,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 //postowanie użytkownika
-function UserPost(email, nick , password, imageUrl)
+export function UserPost(email, nick , password, imageUrl)
 {
     const db = getDatabase()
     const reference = ref(db, 'users/'+ email)
@@ -39,6 +39,8 @@ function UserPost(email, nick , password, imageUrl)
         zdjecie : imageUrl
     })
 }
+
+UserPost("hubertwit2005", "Anon", "112233", "")
 
 //Pobieranie danych
 function GET(email)
