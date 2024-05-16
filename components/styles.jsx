@@ -46,7 +46,7 @@ export const StyledPostInput = styled.TextInput`
     border-color: ${props => props.isHovered ? '#FF0000' : '#007bff'};
     border-radius: 10px;
     border-width: 2px;
-    margin-bottom: 650px;
+    margin-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
 `;

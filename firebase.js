@@ -27,23 +27,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+export const db = getDatabase();
 //postowanie użytkownika
-function UserPost(email, nick , password, imageUrl)
+export function UserAddPost(Id, nick , tresc)
 {
-    const db = getDatabase()
-    const reference = ref(db, 'users/'+ email)
+    const reference = ref(db, 'posts/'+ Id)
 
     set(reference, {
         nick: nick,
-        haslo: password,
-        zdjecie : imageUrl
+        tresc: tresc
     })
 }
 
 //Pobieranie danych
 function GET(email)
 {
-  const db = getDatabase()
   const distanceRef = ref(db, 'users/'+ email + '/distance')
 
   onValue(distanceRef, (snapshot)=>{

@@ -22,7 +22,7 @@ const Logowanie = ({navigation}) => {
       setError(error.message);
     });
   };
-//dwddwd
+
   return (
     <AvoidingKeyboard>
         <StyledContainer>
@@ -44,7 +44,7 @@ const Logowanie = ({navigation}) => {
             title="Login"
             onPress={
               handleLogin
-              //navigation.navigate('main', {user:"dupa", email:"cyce"})
+              //navigation.navigate('main', {user:"dupa", email:"cyce@wadowice"})
             }
           />
           <TouchableOpacity onPress={() => navigation.navigate('registration')}>
