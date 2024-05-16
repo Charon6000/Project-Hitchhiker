@@ -29,6 +29,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 export const db = getDatabase();
 //postowanie użytkownika
+
 export function UserAddPost(Id, nick , tresc)
 {
     const reference = ref(db, 'posts/'+ Id)

@@ -1,0 +1,6 @@
+install
+@react-navigation/native
+@react-navigation/stack
+tyled-components
+firebase
+font-awesome

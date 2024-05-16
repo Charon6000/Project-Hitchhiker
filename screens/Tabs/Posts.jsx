@@ -8,7 +8,6 @@ import { ref, onValue } from "firebase/database";
 import { Data } from '@react-google-maps/api'
 import { DataTable } from 'react-native-paper';
 
-
 const Posts = () => {
   
   const [text, setText] = useState('');
@@ -27,6 +26,7 @@ const Posts = () => {
 
   function addPost() {
     UserAddPost(Object.keys(userData).length + 1, user.email, text)
+    text = null;
   }
   
 
