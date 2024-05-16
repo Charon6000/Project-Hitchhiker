@@ -11,6 +11,8 @@ const Posts = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [text, setText] = useState('');
 
+  //ffff
+
   return (
     <StyledContainer>
       <TouchableOpacity>
