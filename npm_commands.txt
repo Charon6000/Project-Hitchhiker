@@ -4,3 +4,4 @@ install
 tyled-components
 firebase
 font-awesome
+react-native-paper
