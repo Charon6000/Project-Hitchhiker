@@ -26,7 +26,7 @@ const Posts = () => {
 
   function addPost() {
     UserAddPost(Object.keys(userData).length + 1, user.email, text)
-    text = null;
+    setText(null);
   }
   
 

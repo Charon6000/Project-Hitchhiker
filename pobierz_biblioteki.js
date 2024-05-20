@@ -14,8 +14,11 @@ function readLibraryFile(filename) {
 }
 
 // Funkcja do sprawdzania i instalacji bibliotek npm
-function checkAndInstallNpmLibraries() {
+function checkAndInstallNpmLibraries(callback) {
     const npmLibraries = readLibraryFile('npm_commands.txt');
+    let pending = npmLibraries.length;
+    let results = { success: [], failed: [] };
+
     npmLibraries.forEach(library => {
         exec(`npm list ${library}`, (error, stdout, stderr) => {
             if (stdout.includes('missing')) {
@@ -23,20 +26,28 @@ function checkAndInstallNpmLibraries() {
                 exec(`npm install ${library}`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Błąd podczas instalowania ${library}: ${error}`);
+                        results.failed.push(library);
                     } else {
                         console.log(`${library} zainstalowane pomyślnie.`);
+                        results.success.push(library);
                     }
+                    if (--pending === 0) callback(results);
                 });
             } else {
                 console.log(`${library} jest już zainstalowane.`);
+                results.success.push(library);
+                if (--pending === 0) callback(results);
             }
         });
     });
 }
 
 // Funkcja do sprawdzania i instalacji bibliotek npx
-function checkAndInstallNpxLibraries() {
+function checkAndInstallNpxLibraries(callback) {
     const npxLibraries = readLibraryFile('npx_commands.txt');
+    let pending = npxLibraries.length;
+    let results = { success: [], failed: [] };
+
     npxLibraries.forEach(library => {
         exec(`npm show ${library}`, (error, stdout, stderr) => {
             if (stdout === '') {
@@ -44,17 +55,36 @@ function checkAndInstallNpxLibraries() {
                 exec(`npx expo ${library}`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Błąd podczas instalowania ${library}: ${error}`);
+                        results.failed.push(library);
                     } else {
                         console.log(`${library} zainstalowane pomyślnie.`);
+                        results.success.push(library);
                     }
+                    if (--pending === 0) callback(results);
                 });
             } else {
                 console.log(`${library} jest już zainstalowane.`);
+                results.success.push(library);
+                if (--pending === 0) callback(results);
             }
         });
     });
 }
 
-// Wywołanie funkcji
-checkAndInstallNpmLibraries();
-checkAndInstallNpxLibraries();
+// Funkcja do podsumowania wyników instalacji
+function summarizeResults(npmResults, npxResults) {
+    console.log("\nPodsumowanie instalacji bibliotek npm:");
+    console.log("Zainstalowane pomyślnie:", npmResults.success);
+    console.log("Błędy podczas instalacji:", npmResults.failed);
+
+    console.log("\nPodsumowanie instalacji bibliotek npx:");
+    console.log("Zainstalowane pomyślnie:", npxResults.success);
+    console.log("Błędy podczas instalacji:", npxResults.failed);
+}
+
+// Wywołanie funkcji i podsumowanie wyników
+checkAndInstallNpmLibraries(npmResults => {
+    checkAndInstallNpxLibraries(npxResults => {
+        summarizeResults(npmResults, npxResults);
+    });
+});
