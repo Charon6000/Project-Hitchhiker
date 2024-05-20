@@ -5,3 +5,4 @@ tyled-components
 firebase
 font-awesome
 react-native-paper
+@react-native-async-storage/async-storage

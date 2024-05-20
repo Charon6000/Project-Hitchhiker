@@ -1,17 +1,10 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getAuth, initializeAuth, getReactNativePersistence } from "firebase/auth";
+import { getDatabase, ref, set, get, remove } from "firebase/database";
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-
   apiKey: "AIzaSyCW1urZn1ywfH1q0VMY9svX8a66Gt4Y4m4",
   authDomain: "hitchhiker-4c3e0.firebaseapp.com",
   databaseURL: "https://hitchhiker-4c3e0-default-rtdb.europe-west1.firebasedatabase.app",
@@ -22,33 +15,55 @@ const firebaseConfig = {
   measurementId: "G-TK7W54MDBG"
 };
 
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const auth = getAuth(app);
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});
 export const db = getDatabase();
-//postowanie użytkownika
 
-export function UserAddPost(Id, nick , tresc)
-{
-    const reference = ref(db, 'posts/'+ Id)
-
-    set(reference, {
-        nick: nick,
-        tresc: tresc
-    })
+export async function UserAddPost(id, nick, tresc) {
+  const reference = ref(db, 'posts/' + id);
+  await set(reference, {
+    nick: nick,
+    tresc: tresc
+  });
 }
 
-//Pobieranie danych
-function GET(email)
-{
-  const distanceRef = ref(db, 'users/'+ email + '/distance')
-
-  onValue(distanceRef, (snapshot)=>{
-    const data = snapshot.val()
-    updateDistance(postElement, data)
-  })
+export async function GetPost(id) {
+  const userRef = ref(db, `posts/${id}`);
+  try {
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      console.log("istnieje");
+      return snapshot.val();
+    } else {
+      console.log("nie istnieje");
+      return null;
+    }
+  } catch (error) {
+    console.error(`Błąd podczas pobierania postu o ID ${id}:`, error);
+    return null;
+  }
 }
 
-export {auth};
+export async function UsunPost(id) {
+  const reference = ref(db, 'posts/' + id);
+  try {
+    await remove(reference);
+    console.log(`Post o ID ${id} został usunięty.`);
+  } catch (error) {
+    console.error(`Błąd podczas usuwania postu o ID ${id}:`, error);
+  }
+}
+
+async function TestPolaczeniaBazyDanych() {
+  await UserAddPost(0, "testy", "testy");
+  await GetPost(0);
+  await UsunPost(0);
+  await GetPost(0);
+}
+
+TestPolaczeniaBazyDanych();
+
+export { auth };
