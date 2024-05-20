@@ -40,7 +40,6 @@ const Logowanie = ({navigation}) => {
           />
           <Text style={{color: 'red'}}>{error}</Text>
           <Button
-            type="outline"
             title="Login"
             onPress={
               handleLogin
