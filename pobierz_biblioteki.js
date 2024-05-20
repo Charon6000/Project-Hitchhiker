@@ -1,7 +1,6 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 
-// Funkcja do odczytu pliku i pobrania zawartości jako tablica linii
 function readLibraryFile(filename) {
     try {
         const data = fs.readFileSync(filename, 'utf8');
@@ -13,11 +12,11 @@ function readLibraryFile(filename) {
     }
 }
 
-// Funkcja do sprawdzania i instalacji bibliotek npm
 function checkAndInstallNpmLibraries(callback) {
+    const start = performance.now();
     const npmLibraries = readLibraryFile('npm_commands.txt');
     let pending = npmLibraries.length;
-    let results = { success: [], failed: [] };
+    let results = { success: [], failed: [], time: [] };
 
     npmLibraries.forEach(library => {
         exec(`npm list ${library}`, (error, stdout, stderr) => {
@@ -31,22 +30,32 @@ function checkAndInstallNpmLibraries(callback) {
                         console.log(`${library} zainstalowane pomyślnie.`);
                         results.success.push(library);
                     }
-                    if (--pending === 0) callback(results);
+                    if (--pending === 0) {
+                        const end = performance.now()
+                        const czas = (start-end)/1000
+                        results.time.push(czas);
+                        callback(results);
+                    }
                 });
             } else {
                 console.log(`${library} jest już zainstalowane.`);
                 results.success.push(library);
-                if (--pending === 0) callback(results);
+                if (--pending === 0) {
+                    const end = performance.now()
+                    const czas = (start-end)/1000
+                    results.time.push(czas);
+                    callback(results);
+                }
             }
         });
     });
 }
 
-// Funkcja do sprawdzania i instalacji bibliotek npx
 function checkAndInstallNpxLibraries(callback) {
+    const start = performance.now();
     const npxLibraries = readLibraryFile('npx_commands.txt');
     let pending = npxLibraries.length;
-    let results = { success: [], failed: [] };
+    let results = { success: [], failed: [] , time: []};
 
     npxLibraries.forEach(library => {
         exec(`npm show ${library}`, (error, stdout, stderr) => {
@@ -60,26 +69,37 @@ function checkAndInstallNpxLibraries(callback) {
                         console.log(`${library} zainstalowane pomyślnie.`);
                         results.success.push(library);
                     }
-                    if (--pending === 0) callback(results);
+                    if (--pending === 0) {
+                        const end = performance.now()
+                        const czas = (start-end)/1000
+                        results.time.push(czas);
+                        callback(results);
+                    }
                 });
             } else {
                 console.log(`${library} jest już zainstalowane.`);
                 results.success.push(library);
-                if (--pending === 0) callback(results);
+                if (--pending === 0) {
+                    const end = performance.now()
+                    const czas = (start-end)/1000
+                    results.time.push(czas);
+                    callback(results);
+                }
             }
         });
     });
 }
 
-// Funkcja do podsumowania wyników instalacji
 function summarizeResults(npmResults, npxResults) {
     console.log("\nPodsumowanie instalacji bibliotek npm:");
     console.log("Zainstalowane pomyślnie:", npmResults.success);
     console.log("Błędy podczas instalacji:", npmResults.failed);
+    console.log("Czas programu npm:", npxResults.time), " sekund";
 
     console.log("\nPodsumowanie instalacji bibliotek npx:");
     console.log("Zainstalowane pomyślnie:", npxResults.success);
     console.log("Błędy podczas instalacji:", npxResults.failed);
+    console.log("Czas programu npx:", npxResults.time, " sekund");
 }
 
 // Wywołanie funkcji i podsumowanie wyników
