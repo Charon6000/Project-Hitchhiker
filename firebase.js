@@ -44,7 +44,7 @@ export async function GetPost(id) {
       const end = performance.now()
       const czas = (start-end)/1000
       console.log(`Czas pobierania postu wynosi ${czas} sekund`)
-      return true;
+      return snapshot.val();
     } else {
       console.log(`Post o ID ${id} nie istnieje`);
       const end = performance.now()
@@ -76,14 +76,21 @@ export async function UsunPost(id) {
 }
 
 async function TestPolaczeniaBazyDanych() {
+  await UsunPost(0);
   await UserAddPost(0, "testy", "testy");
   let wynik1 = await GetPost(0);
   await UsunPost(0);
   let wynik2 = await GetPost(0);
   if(wynik1 && !wynik2)
-    console.log("Połączenie z bazą danych jest prawidłowe")
+    {
+      console.log("Połączenie z bazą danych jest prawidłowe")
+      return true
+    }
   else
+  {
     console.log("Połączenie z bazą danych nie jest prawidłowe")
+    return false
+  }
 }
 
 TestPolaczeniaBazyDanych();
