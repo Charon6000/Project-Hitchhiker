@@ -18,12 +18,15 @@ const Rejestrowanie = ({navigation}) => {
     
     if (nick && password && rpassword && email && password == rpassword) {
       //Alert.alert(`${nick}, jeśli ktoś to ogarnie, to zostaniesz zarejestrowany! 😘`);
-
+      const enterTime = performance.now();
       createUserWithEmailAndPassword(auth, email,password)
       .then(userCredentials =>{
         const user = userCredentials.user;
         navigation.navigate('login');
         Alert.alert('Zostales poprawnie zarejestrowany.');
+        const endTime = performance.now();
+        const czas = (endTime - enterTime)/1000;
+        console.log(`Czas od klikniecia przycisku do stworzenia uzytkownika: ${czas} sekund`)
       })
       .catch((error) =>{
           setError(error.message);

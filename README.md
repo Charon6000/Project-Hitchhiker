@@ -47,3 +47,7 @@
 1. Jeżeli dane takie jak hasło, nazwa użytkownika w bazie danych będą się zgadzać z danymi naszego konta testowego, walidator funkcji GET zwróci nam wartość TRUE, a więc pobieranie danych dział poprawnie
 1. Nastepnie za pomocą działającego pobierania danych będziemy wstanie sprawdzić czy tworząc nowe konto użytkownika wartości poprawnie dodadzą się do bazy danych, za pomocą walidatora funkcji GET, który powinien zwrócić wartość TRUE
 1. Później znowu za pomocą już działającego pobierania danych będziemy w stanie sprawdzić czy usuwanie użytkownika działa poprawnie, za pomocą walidatora funkcji GET, który powinien zwrócić wartość FALSE, czyli dane zostały usunięte
+
+### Wydajnosc aplikacji
+1. Po dodaniu postu przez zalogowanego uzytkownika test obliczy nam czas jaki minął pomiędzy wykonaniem żądania a dostaniem odpowiedzi, dzięki czemu będziemy świadomi wydajności tej funkcji
+1. Po poprawnym wprowadzeniu danych oraz wysłaniu żądania o utworzeniu nowego użytkownika, test obliczy czas pomiędzy kliknięciem przycisku a pojawieniem się użytkownika w bazie danych
