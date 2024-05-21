@@ -23,31 +23,46 @@ const auth = initializeAuth(app, {
 export const db = getDatabase();
 
 export async function UserAddPost(id, nick, tresc) {
+  const start = performance.now();
   const reference = ref(db, 'posts/' + id);
   await set(reference, {
     nick: nick,
     tresc: tresc
   });
+  const end = performance.now()
+  const czas = (start-end)/1000
+  console.log(`Czas dodawania postu wynosi ${czas} sekund`)
 }
 
 export async function GetPost(id) {
+  const start = performance.now();
   const userRef = ref(db, `posts/${id}`);
   try {
     const snapshot = await get(userRef);
     if (snapshot.exists()) {
-      console.log("istnieje");
-      return snapshot.val();
+      console.log(`Post o ID ${id} istnieje`);
+      const end = performance.now()
+      const czas = (start-end)/1000
+      console.log(`Czas pobierania postu wynosi ${czas} sekund`)
+      return true;
     } else {
-      console.log("nie istnieje");
-      return null;
+      console.log(`Post o ID ${id} nie istnieje`);
+      const end = performance.now()
+      const czas = (start-end)/1000
+      console.log(`Czas pobierania postu wynosi ${czas} sekund`)
+      return false;
     }
   } catch (error) {
     console.error(`Błąd podczas pobierania postu o ID ${id}:`, error);
-    return null;
+    const end = performance.now()
+    const czas = (start-end)/1000
+    console.log(`Czas pobierania postu wynosi ${czas} sekund`)
+    return false;
   }
 }
 
 export async function UsunPost(id) {
+  const start = performance.now();
   const reference = ref(db, 'posts/' + id);
   try {
     await remove(reference);
@@ -55,13 +70,20 @@ export async function UsunPost(id) {
   } catch (error) {
     console.error(`Błąd podczas usuwania postu o ID ${id}:`, error);
   }
+  const end = performance.now()
+  const czas = (start-end)/1000
+  console.log(`Czas usuwania postu wynosi ${czas} sekund`)
 }
 
 async function TestPolaczeniaBazyDanych() {
   await UserAddPost(0, "testy", "testy");
-  await GetPost(0);
+  let wynik1 = await GetPost(0);
   await UsunPost(0);
-  await GetPost(0);
+  let wynik2 = await GetPost(0);
+  if(wynik1 && !wynik2)
+    console.log("Połączenie z bazą danych jest prawidłowe")
+  else
+    console.log("Połączenie z bazą danych nie jest prawidłowe")
 }
 
 TestPolaczeniaBazyDanych();
