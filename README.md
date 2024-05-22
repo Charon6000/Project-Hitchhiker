@@ -48,43 +48,61 @@
 1. Nastepnie za pomocą działającego pobierania danych będziemy wstanie sprawdzić czy tworząc nowe konto użytkownika wartości poprawnie dodadzą się do bazy danych, za pomocą walidatora funkcji GET, który powinien zwrócić wartość TRUE
 1. Później znowu za pomocą już działającego pobierania danych będziemy w stanie sprawdzić czy usuwanie użytkownika działa poprawnie, za pomocą walidatora funkcji GET, który powinien zwrócić wartość FALSE, czyli dane zostały usunięte -->
 
-## Wydajnosc aplikacji
-1. Po dodaniu postu przez zalogowanego uzytkownika test obliczy nam czas jaki minął pomiędzy wykonaniem żądania a dostaniem odpowiedzi, dzięki czemu będziemy świadomi wydajności tej funkcji
-1. Po poprawnym wprowadzeniu danych oraz wysłaniu żądania o utworzeniu nowego użytkownika, test obliczy czas pomiędzy kliknięciem przycisku a pojawieniem się użytkownika w bazie danych
 
 ## Najważniejsze funkcje programu:
-### Funkcja ``UserAddPost``
+###  ``UserAddPost``
 1. Opis funkcji
 W pliku firebase.js znajduje się funkcja ``UserAddPost(id,nick,tresc)``, która dodaje nowy post zawierający konkretną treść dla osoby o danym nicku. 
 1. Test wydajnościowy funkcji
 Funkcja będąc użytą za każdym razem sprawdza ile czasu zajeło jej dodanie postu. Wynik podawany jest w sekundach.
 1. Test jednostkowy funkcji
 Testem jednostkowym tej funkcji zajmuje się funkcja ``TestPolaczeniaBazyDanych()``. Dodaje ona za pomocą testowaniej funkcji post o id ``0`` (0 jest id testowym. Posty dodawane z aplikacji mają id zaczynające się od 1), nicku ``test``, i treści ``test``. Nastepnie sprawdzana jest funkcją ``GetPost``, która sprawdza czy post o id 0 pojawił się w bazie danych czy nie ma go. Jeśli postu nie ma znaczy że funkcja nie działa poprawnie, a jeśli jest znaczy, że działa  prawidłowo.
-### Funkcja ``GetPost``
+###  ``GetPost``
 1. Opis funkcji
 W pliku firebase.js znajduje się funkcja ``GetPost(id)``, która pobiera dane postu o konkretnym ``id``. Funkcja zwraca wartość ``false`` jeśli nie będzie mogła znaleźć postu w bazie danych i zwraca wartości postu jeśli jej się to uda. 
 1. Test wydajnościowy funkcji
 Funkcja będąc użytą za każdym razem sprawdza ile czasu zajeło jej pobranie postu. Wynik podawany jest w sekundach.
 1. Test jednostkowy funkcji
 Testem jednostkowym tej funkcji zajmuje się funkcja ``TestPolaczeniaBazyDanych()``. Dodaje lub aktualizuje ona post o id ``0`` za pomocą funkcji ``UserAddPost``. Nastepnie pobiera wartości postu z bazy danych za pomocą testowanej funkcji, post zostaje usunięty funkcją ``UsunPost``, a funkcja próbuje pobrać z niego wartości jesze raz. Jeśli funkcja nie znajdzie postu po jego dodaniu albo znajdzie post po tym jak został usunięty oznacza to że nie działa ona prawidłowo.
-### Funkcja ``UsunPost``
+###  ``UsunPost``
 1. Opis funkcji
 W pliku firebase.js znajduje się funkcja ``UsunPost(id)``, która usuwa post o konkretnym ``id``. 
 1. Test wydajnościowy funkcji
 Funkcja będąc użytą za każdym razem sprawdza ile czasu zajeło jej usunięcie postu. Wynik podawany jest w sekundach.
 1. Test jednostkowy funkcji
 Dodaje lub aktualizuje ona post o id ``0`` za pomocą funkcji ``UserAddPost``. Nastepnie sprawdza czy post istnieje funkcją ``GetPost``, post zostaje usunięty za pomocą testowanej funkcji, a funkcja ``GetPost``próbuje pobrać z niego wartości jesze raz. Jeśli funkcja ``GetPost`` znajdzie post po tym jak funkcja etstowana poróbowała go usunąć oznacza to że funkcja nie działa poprawnie.
-### Funkcja ``checkAndInstallNpxLibraries``
+###  ``checkAndInstallNpxLibraries``
 1. Opis funkcji
 Funkcja znajduje się w pliku ``pobierz_biblioteki.js`` i sprawdza czy wszystkie biblioteki z pliku ``npx_commands.txt`` zostały zainstalowane, a jeśli nie to instaluje je.
 1. Test wydajnościowy funkcji
 Funkcja sprawdza ile czasu zajęło jej sprawdzenie i zainstalowanie każdej z bibliotek i zwraca go jako ``time``. Wynik podawany jest w sekundach.
 1. Test jednostkowy funkcji
 Funkcja samodzielnie sprawdza czy udało jej się zainstalować daną bibliotekę. Te nieudane pobrania wprowadza do listy ``failed``, a udane do listy ``success`` i obie zwraca.
-### Funkcja ``checkAndInstallNpmLibraries``
+###  ``checkAndInstallNpmLibraries``
 1. Opis funkcji
 Funkcja znajduje się w pliku ``pobierz_biblioteki.js`` i sprawdza czy wszystkie biblioteki z pliku ``npm_commands.txt`` zostały zainstalowane, a jeśli nie to instaluje je.
 1. Test wydajnościowy funkcji
 Funkcja sprawdza ile czasu zajęło jej sprawdzenie i zainstalowanie każdej z bibliotek i zwraca go jako ``time``. Wynik podawany jest w sekundach.
 1. Test jednostkowy funkcji
 Funkcja samodzielnie sprawdza czy udało jej się zainstalować daną bibliotekę. Te nieudane pobrania wprowadza do listy ``failed``, a udane do listy ``success`` i obie zwraca.
+
+### ``createTestUser``
+1. Funkcja createTestUser służy do tworzenia testowego użytkownika w systemie. Po wywołaniu tej funkcji, nowy użytkownik zostanie utworzony przy użyciu podanego adresu e-mail i hasła. Następnie funkcja sprawdza czas wykonania operacji tworzenia użytkownika i loguje czas wykonania w konsoli. Po utworzeniu użytkownika, funkcja wywołuje signInTestUser, aby zalogować nowo utworzonego użytkownika.
+
+### ``signInTestUser``
+1. Funkcja signInTestUser służy do logowania testowego użytkownika do systemu. Po wywołaniu tej funkcji, użytkownik zostanie zalogowany przy użyciu podanego adresu e-mail i hasła. Funkcja sprawdza czas wykonania operacji logowania i loguje ten czas w konsoli. Po zalogowaniu, funkcja wywołuje getCurrentUserInfo, aby pobrać informacje o zalogowanym użytkowniku.
+
+### ``getCurrentUserInfo``
+1. Funkcja getCurrentUserInfo służy do pobierania informacji o aktualnie zalogowanym użytkowniku. Po wywołaniu tej funkcji, sprawdzane jest, czy istnieje zalogowany użytkownik. Jeśli tak, funkcja pobiera informacje o użytkowniku, takie jak adres e-mail, a następnie loguje czas wykonania operacji pobierania informacji w konsoli. Po pobraniu informacji, funkcja może wywołać inne funkcje, takie jak signOutUser lub deleteUser, w zależności od potrzeb.
+
+### ``signOutUser``
+1 Funkcja signOutUser służy do wylogowywania aktualnie zalogowanego użytkownika z systemu. Po wywołaniu tej funkcji, użytkownik zostanie wylogowany, a czas wykonania operacji wylogowywania zostanie zarejestrowany i zalogowany w konsoli.
+
+### ``deleteUser``
+1. Funkcja deleteUser służy do usuwania aktualnie zalogowanego użytkownika z systemu. Po wywołaniu tej funkcji, aktualnie zalogowany użytkownik zostanie usunięty. Funkcja rejestruje czas wykonania operacji usuwania użytkownika i loguje ten czas w konsoli.
+
+### ``addPost``
+Funkcja addPost służy do dodawania nowego posta użytkownika do systemu. Po wywołaniu tej funkcji, mierzymy czas, który upływa od momentu, gdy użytkownik naciska klawisz Enter (lub inną akcję dodawania posta), do momentu, gdy post jest dodany do systemu. Czas ten jest mierzony dwukrotnie: raz przed dodaniem posta (enterTime) i raz po jego dodaniu (endTime). Następnie wywoływana jest funkcja UserAddPost do dodania posta do systemu. Po dodaniu posta, tekst wprowadzony przez użytkownika jest czyściony, a licznik postów jest aktualizowany.
+
+### ``useEffect``
+W tym przypadku hook useEffect jest wykorzystywany do monitorowania zmian w stanie liczbaPostow i enterTime. Gdy liczba postów jest większa od zera i enterTime nie jest równy null, hook uruchamia efekt uboczny, który oblicza czas, jaki upłynął między naciśnięciem klawisza Enter a pokazaniem się postu. Czas ten jest obliczany za pomocą funkcji performance.now(), a następnie logowany w konsoli w sekundach. Ten hook jest przydatny do monitorowania i reagowania na zmiany w danych lub ich zależnościach w komponencie funkcyjnym.

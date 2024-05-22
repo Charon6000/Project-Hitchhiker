@@ -12,6 +12,7 @@ const Posts = () => {
   const [text, setText] = useState('');
   const [userData, setUserData] = useState(null);
   const [enterTime, setEnterTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
   const [liczbaPostow, setLiczbaPostow] = useState(0);
   const user = auth.currentUser;
 
@@ -30,13 +31,14 @@ const Posts = () => {
     const enterTime = performance.now();
     setEnterTime(enterTime);
     UserAddPost(Object.keys(userData).length + 1, user.email, text);
+    const endTime = performance.now();
+    setEndTime(endTime);
     setText('');
     setLiczbaPostow(prevCount => prevCount + 1); 
   };
   
   useEffect(() => {
     if (liczbaPostow > 0 && enterTime !== null) {
-      const endTime = performance.now();
       const czas = (endTime - enterTime)/1000;
       console.log(`Czas między naciśnięciem klawisza enter a pokazaniem się postu: ${czas} sekund`);
     }
