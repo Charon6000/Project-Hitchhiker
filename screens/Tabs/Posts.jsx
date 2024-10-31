@@ -3,7 +3,7 @@ import { Text } from 'react-native'
 import { StyledContainer, StyledTextInput, StyledPostInput } from '../../components/styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { UserAddPost, auth, db } from '../../firebase'
-import { ref, onValue } from "firebase/database";
+import { getDatabase,ref, onValue } from "firebase/database";
 import { Data } from '@react-google-maps/api'
 import { DataTable } from 'react-native-paper';
 
@@ -15,6 +15,7 @@ const Posts = () => {
   const [endTime, setEndTime] = useState(null);
   const [liczbaPostow, setLiczbaPostow] = useState(0);
   const user = auth.currentUser;
+  const db = getDatabase();
 
   useEffect(() => {
     const userRef = ref(db, 'posts/');
@@ -27,22 +28,19 @@ const Posts = () => {
     });
   }, []);
 
-  const addPost = () => {
-    const enterTime = performance.now();
-    setEnterTime(enterTime);
-    UserAddPost(Object.keys(userData).length + 1, user.email, text);
-    const endTime = performance.now();
-    setEndTime(endTime);
-    setText('');
-    setLiczbaPostow(prevCount => prevCount + 1); 
-  };
-  
-  useEffect(() => {
-    if (liczbaPostow > 0 && enterTime !== null) {
-      const czas = (endTime - enterTime)/1000;
-      console.log(`Czas między naciśnięciem klawisza enter a pokazaniem się postu: ${czas} sekund`);
+  const addPost = async () => {
+    if (!auth.currentUser) {
+      console.error("User is not authenticated");
+      return;
     }
-  }, [liczbaPostow, enterTime]);
+    try {
+      await UserAddPost(Object.keys(userData).length + 1, user.email, text);
+      setText('');
+      setLiczbaPostow(prevCount => prevCount + 1);
+    } catch (error) {
+      console.error("Error adding post:", error);
+    }
+  };
 
   
   return (

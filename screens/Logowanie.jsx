@@ -42,8 +42,8 @@ const Logowanie = ({navigation}) => {
           <Button
             title="Login"
             onPress={
-              handleLogin
-              //navigation.navigate('main', {user:"dupa", email:"cyce@wadowice"})
+              //handleLogin
+              navigation.navigate('main', {user:"dupa", email:"cyce@wadowice"})
             }
           />
           <TouchableOpacity onPress={() => navigation.navigate('registration')}>
